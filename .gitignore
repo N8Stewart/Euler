@@ -1,5 +1,5 @@
 # Ignore my recovery key. Key is available at /Dropbox/Private/Euler/.
-Euler_recovery_key.txt
+*.key
 
 # Ignore all object files
 *.[oa]
