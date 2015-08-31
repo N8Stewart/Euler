@@ -6,3 +6,6 @@ Euler_recovery_key.txt
 
 # Ignore all executable files
 problem
+
+# Ignore the pdf solution files
+*.pdf
