@@ -1,5 +1,5 @@
 # Euler
-Common storage for all of my Euler solutions
+Common storage for all of my Euler solutions <br>
 Account status: https://projecteuler.net/profile/N8Stewart.png
 
 # DISCLAIMER:
