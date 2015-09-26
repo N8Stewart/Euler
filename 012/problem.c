@@ -21,28 +21,39 @@
 
 int main(void){
 	unsigned long long curr_num = 1;
-    unsigned long long sum;
-    int num_divisors = 0;
+    unsigned long long curr_sum = 0;
+    int total_divisors = 0;
     
-    while (num_divisors < 500) {
-        num_divisors = 0;
-        sum = 0;
+    while (total_divisors < 500) {
+        total_divisors = 0;
+        //sum = 0;
         unsigned long long i = curr_num;
         // Generate the traingular number
-        for (; i > 0; i-- ) {
-            sum += i;
-        }
+        curr_sum += curr_num;
         
-        // calculate divisors 1 by 1
-        for (i = 1; i < sqrt(sum); i++) {
-            if (curr_num % i == 0) {
+        // Calculate prime divisors
+        int num_divisors = 0;
+        unsigned long long sum = curr_sum;
+        unsigned long long curr_divisor = 2;
+        while (sum > 1) {
+            if (sum % curr_divisor == 0) {
                 num_divisors++;
+                sum /= curr_divisor;
+            } else {
+                curr_divisor++;
+                if (num_divisors > 0) {
+                    total_divisors = (total_divisors == 0) ? (num_divisors + 1) : total_divisors * (num_divisors + 1);
+                    num_divisors = 0;
+                }
             }
         }
-        
+        if (num_divisors > 0) {
+            total_divisors = (total_divisors == 0) ? (num_divisors + 1) : total_divisors * (num_divisors + 1);
+            num_divisors = 0;
+        }
         curr_num++;
-        printf("%llu : %d\n", sum, num_divisors);    
     }
+    printf("Triangular Number: %llu, num divisors: %d\n", curr_sum, total_divisors); 
     
     return 0;
 }
