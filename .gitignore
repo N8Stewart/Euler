@@ -7,3 +7,5 @@
 # Ignore all executable files
 problem
 
+# Ignore DS_Store files
+*.DS_Store
