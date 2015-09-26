@@ -17,7 +17,32 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 int main(void){
-	
+	unsigned long long curr_num = 1;
+    unsigned long long sum;
+    int num_divisors = 0;
+    
+    while (num_divisors < 500) {
+        num_divisors = 0;
+        sum = 0;
+        unsigned long long i = curr_num;
+        // Generate the traingular number
+        for (; i > 0; i-- ) {
+            sum += i;
+        }
+        
+        // calculate divisors 1 by 1
+        for (i = 1; i < sqrt(sum); i++) {
+            if (curr_num % i == 0) {
+                num_divisors++;
+            }
+        }
+        
+        curr_num++;
+        printf("%llu : %d\n", sum, num_divisors);    
+    }
+    
+    return 0;
 }
