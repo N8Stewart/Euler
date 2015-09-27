@@ -15,25 +15,17 @@ typedef struct node{
 
 void loadNumber(FILE *in);
 
-
 int main(void){
 	FILE *in;
 	int i;
-	unsigned long long max_prod;
-	unsigned long long curr_prod;
-	int buffer;
 
 	/* Create file handle */
 	if((in = fopen(FILENAME, "r")) == NULL){
 		printf("Unable to open file '%s'\n", FILENAME);
 		return 1;
 	}
-	/* Load the 1000 digit number into the array */
-	loadNumber(in);
-	fclose(in);
 
-	printf("Largest Product: %llu\n", max_prod);
-
+    fclose(in);
 	return 0;
 }
 
