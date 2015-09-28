@@ -8,9 +8,11 @@
 
 #define FILENAME "numbers.txt"
 #define LENGTH 50 // Each number is 50 digits long
+#define NUMBERS 100 // There are 100 numbers
 
 void loadNumber(FILE *in, list *number);
 void printNumber(list *number);
+void addNumber(list *sum, list *number);
 
 int main(void){
 	FILE *in;
@@ -28,8 +30,14 @@ int main(void){
  	list *currNum = malloc(sizeof(list));
  	constructList(currNum, LENGTH);
 	
-	/* Print the first 10 digits of sum */
+	/* Compute the large number by repetitively loading the numbers from file and adding to sum */
 	loadNumber(in, sum);
+	for (i = 1; i < NUMBERS; i++) {
+		loadNumber(in, currNum);
+		addNumber(sum, currNum);
+	}
+	
+	/* Print the first 10 digits of sum */
 	printNumber(sum);
 
 	/* Deconstruct all constructs */
@@ -39,6 +47,11 @@ int main(void){
 	free(currNum);
     
     return 0;
+}
+
+/* Add number to sum */
+void addNumber(list *sum, list *number) {
+	
 }
 
 /* Construct a number using a linked list */
@@ -56,7 +69,7 @@ void loadNumber(FILE *in, list *number){
 void printNumber(list *number) {
 	node *head = number -> head;
 	int i = 0;
-	while (head != NULL) {
+	while (head != NULL && i < 10) {
         printf("%c", head -> digit);
 		head = head -> next;
 		i++;
