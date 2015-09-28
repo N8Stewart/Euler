@@ -35,14 +35,9 @@ int main(void){
 	
 	/* Compute the large number by repetitively loading the numbers from file and adding to sum */
 	loadNumber(in, sum);
-	printNumber(sum);
 	for (i = 1; i < NUMBERS; i++) {
 		loadNumber(in, currNum);
-		printf(" + ");
-		printNumber(currNum);
 		addNumber(sum, currNum);
-		printf(" = ");
-		printNumber(sum);
 	}
 	
 	/* Print the first 10 digits of sum */
@@ -99,7 +94,6 @@ void addNumber(list *sum, list *number) {
 		} else {
 			carry = 0;
 		}
-		printf("Hello %d\n", newSumValue);
 		sumTail -> digit = newSumValue;
 		sumTail = sumTail -> prev;
 	}	
@@ -123,7 +117,7 @@ void loadNumber(FILE *in, list *number){
 void printNumber(list *number) {
 	node *head = number -> head;
 	int i = 0;
-	while (head != NULL /*&& i < 10*/) {
+	while (head != NULL && i < 10) {
         printf("%c", head -> digit);
 		head = head -> next;
 		i++;

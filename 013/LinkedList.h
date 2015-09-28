@@ -20,6 +20,7 @@ void constructList(list *inst, int length) {
     node *oldPtr = malloc(sizeof(node));
     oldPtr -> prev = head;
 	head -> next = oldPtr;
+	head -> prev = NULL;
     for (i = 2; i < length; i++) {
         node *newPtr = malloc(sizeof(node));
         oldPtr -> next = newPtr;
@@ -27,6 +28,7 @@ void constructList(list *inst, int length) {
         oldPtr = newPtr;
     }
     inst -> tail = oldPtr;   
+	inst -> tail -> next = NULL;
 }
 
 /* Destruct a list, freeing all nodes except for the list itself. */
