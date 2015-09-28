@@ -4,16 +4,13 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
+#include "LinkedList.h"
 
 #define FILENAME "numbers.txt"
 #define LENGTH 50 // Each number is 50 digits long
 
-typedef struct node{
-    struct node *next;
-    char digit;
-} node;
-
-void loadNumber(FILE *in);
+void loadNumber(FILE *in, list *number);
+void printNumber(list *number);
 
 int main(void){
 	FILE *in;
@@ -24,12 +21,48 @@ int main(void){
 		printf("Unable to open file '%s'\n", FILENAME);
 		return 1;
 	}
+    
+	/* Construct sum and current number lists */
+    list *sum = malloc(sizeof(list));
+    constructList(sum, LENGTH);
+ 	list *currNum = malloc(sizeof(list));
+ 	constructList(currNum, LENGTH);
+	
+	/* Print the first 10 digits of sum */
+	node *head = sum -> head;
+	for (i = 0; i < 10; i++, head = head -> next) {
+		head -> digit = i + 48;
+	}
+	printNumber(sum);
 
+	/* Deconstruct all constructs */
     fclose(in);
-	return 0;
+ 	destructList(sum);
+    free(sum);
+	free(currNum);
+    
+    return 0;
 }
 
-/* Construct a number using a linked list and return a pointer to the head */
-void loadNumber(FILE *in){
-	
+/* Construct a number using a linked list */
+void loadNumber(FILE *in, list *number){
+    
+    node *head_ptr;
+    int i;
+    
+    /* fill in the linked list */
+	for(i = 0, head_ptr = number -> head; i < LENGTH; i++, head_ptr = head_ptr -> next)
+        fscanf(in, "%c", &(head_ptr -> digit));
+}
+
+/* Print the first 10 digits of the number passed as a parameter */
+void printNumber(list *number) {
+	node *head = number -> head;
+	int i = 0;
+	while (head != NULL && i < 10) {
+        printf("%c", head -> digit);
+		head = head -> next;
+		i++;
+	}
+    printf("\n");
 }
