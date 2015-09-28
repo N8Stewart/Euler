@@ -29,10 +29,7 @@ int main(void){
  	constructList(currNum, LENGTH);
 	
 	/* Print the first 10 digits of sum */
-	node *head = sum -> head;
-	for (i = 0; i < 10; i++, head = head -> next) {
-		head -> digit = i + 48;
-	}
+	loadNumber(in, sum);
 	printNumber(sum);
 
 	/* Deconstruct all constructs */
@@ -59,7 +56,7 @@ void loadNumber(FILE *in, list *number){
 void printNumber(list *number) {
 	node *head = number -> head;
 	int i = 0;
-	while (head != NULL && i < 10) {
+	while (head != NULL) {
         printf("%c", head -> digit);
 		head = head -> next;
 		i++;
